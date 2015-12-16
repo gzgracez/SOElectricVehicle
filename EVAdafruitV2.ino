@@ -13,13 +13,10 @@ void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
   Serial.println("Motor test!");
   AFMS.begin();
-  myMotor->setSpeed(currentSpeed);
-  myMotor2->setSpeed(currentSpeed);
-  go(5000);
-  pause();
   start();
   go(5000);
   slow();
+  pause();
 }
  
 void loop() {
@@ -48,9 +45,9 @@ void go(int time) {
 void slow(){ 
   while (currentSpeed>-1) {
     currentSpeed--;
+    Serial.println(currentSpeed);
     goSpeed(currentSpeed);
   }
-  goSpeed(0);
 }
   
 void pause(){
