@@ -6,7 +6,8 @@
  
  Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
  Adafruit_DCMotor *myMotor2 = AFMS.getMotor(2);
- int currentSpeed = 200;
+ int maxSpeed = 200;
+ int currentSpeed = 0;
  
 void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
@@ -16,6 +17,9 @@ void setup() {
   myMotor2->setSpeed(currentSpeed);
   go(5000);
   pause();
+  start();
+  go(5000);
+  slow();
 }
  
 void loop() {
@@ -30,7 +34,8 @@ void goSpeed(int moveSpeed) {
 }
 
 void start() {
-  for (int i = 0; i<maxSpeed; i++){
+  for (int i = 0; i<=maxSpeed; i++){
+    currentSpeed = i;
     goSpeed(currentSpeed);
   }
 }
@@ -45,6 +50,7 @@ void slow(){
     currentSpeed--;
     goSpeed(currentSpeed);
   }
+  goSpeed(0);
 }
   
 void pause(){
@@ -55,4 +61,3 @@ void pause(){
   myMotor2->run(FORWARD);
   delay(1000);
 }
-  
