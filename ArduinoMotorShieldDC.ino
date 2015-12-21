@@ -30,24 +30,6 @@ void setup() {
 }
 
 void loop() {
-//  digitalWrite(BRAKE_A, LOW); // brake: LOW = disable motor brake
-//  digitalWrite(DIR_A, HIGH); // direction: HIGH = forward
-//  digitalWrite(BRAKE_B, LOW);
-//  digitalWrite(DIR_B, HIGH);
-//
-//  analogWrite(PWM_A, 255); // motor speed
-//  analogWrite(PWM_B, 255); 
-//
-//  delay(5000);
-////  Serial.print("current consumption at full speed: ");
-////  Serial.println(analogRead(SNS_A));
-//
-////  Serial.println("Start braking\n");
-//  // raising the brake pin the motor will stop faster than the stop by inertia
-//  digitalWrite(BRAKE_A, HIGH); 
-//  digitalWrite(BRAKE_B, HIGH);
-//  delay(5000);
-//  while(1);
 }
 
 // go forward, gradually increase speed
@@ -59,20 +41,17 @@ void start () {
   for (int i = 0; i <= maxSpeed; i++) {
     currentSpeed = i;
     goSpeed(currentSpeed);
-    Serial.println(currentSpeed);
   }
 }
 
 void go (int time) { 
   goSpeed(currentSpeed);
-  Serial.println(currentSpeed); 
   delay(time);
 }
 
 void slow () {
   while (currentSpeed>0) {
     currentSpeed--;
-    Serial.println(currentSpeed);
     goSpeed(currentSpeed);
   }
 }
