@@ -43,7 +43,7 @@ void go(int time) {
 }
 
 void slow(){ 
-  while (currentSpeed>-1) {
+  while (currentSpeed>0) {
     currentSpeed--;
     Serial.println(currentSpeed);
     goSpeed(currentSpeed);
