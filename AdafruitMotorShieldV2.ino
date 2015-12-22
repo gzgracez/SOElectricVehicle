@@ -6,7 +6,7 @@
  
  Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
  Adafruit_DCMotor *myMotor2 = AFMS.getMotor(2);
- int maxSpeed = 200;
+ int maxSpeed = 150;
  int currentSpeed = 0;
  
 void setup() {
@@ -22,39 +22,40 @@ void setup() {
 void loop() {
 }
 
-void goSpeed(int moveSpeed) {
-  myMotor->setSpeed(moveSpeed);
-  myMotor2->setSpeed(moveSpeed);
-  myMotor->run(FORWARD);
-  myMotor2->run(FORWARD);
-//  delay(time);
-}
-
 void start() {
   for (int i = 0; i<=maxSpeed; i++){
     currentSpeed = i;
-    goSpeed(currentSpeed);
+    goSpeedBackward(currentSpeed);
   }
 }
 
 void go(int time) {
-  goSpeed(currentSpeed);
+  goSpeedBackward(currentSpeed);
   delay(time);
 }
 
 void slow(){ 
   while (currentSpeed>0) {
     currentSpeed--;
-    Serial.println(currentSpeed);
-    goSpeed(currentSpeed);
+    goSpeedBackward(currentSpeed);
   }
 }
   
 void pause(){
-  myMotor->setSpeed(0);
-  myMotor2->setSpeed(0);
-  Serial.print("tick");
+  goSpeedBackward(0);
+  delay(1000);
+}
+
+void goSpeedForward(int moveSpeed) {
+  myMotor->setSpeed(moveSpeed);
+  myMotor2->setSpeed(moveSpeed);
   myMotor->run(FORWARD);
   myMotor2->run(FORWARD);
-  delay(1000);
+}
+
+void goSpeedBackward(int moveSpeed) {
+  myMotor->setSpeed(moveSpeed);
+  myMotor2->setSpeed(moveSpeed);
+  myMotor->run(BACKWARD);
+  myMotor2->run(BACKWARD);
 }
