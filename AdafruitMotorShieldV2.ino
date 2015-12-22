@@ -2,12 +2,12 @@
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_PWMServoDriver.h"
 
- Adafruit_MotorShield AFMS = Adafruit_MotorShield();
+Adafruit_MotorShield AFMS = Adafruit_MotorShield();
  
- Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
- Adafruit_DCMotor *myMotor2 = AFMS.getMotor(2);
- int maxSpeed = 150;
- int currentSpeed = 0;
+Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
+Adafruit_DCMotor *myMotor2 = AFMS.getMotor(2);
+int maxSpeed = 100;
+int currentSpeed = 0;
  
 void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
@@ -25,24 +25,24 @@ void loop() {
 void start() {
   for (int i = 0; i<=maxSpeed; i++){
     currentSpeed = i;
-    goSpeedBackward(currentSpeed);
+    goSpeedForward(currentSpeed);
   }
 }
 
 void go(int time) {
-  goSpeedBackward(currentSpeed);
+  goSpeedForward(currentSpeed);
   delay(time);
 }
 
 void slow(){ 
   while (currentSpeed>0) {
     currentSpeed--;
-    goSpeedBackward(currentSpeed);
+    goSpeedForward(currentSpeed);
   }
 }
   
 void pause(){
-  goSpeedBackward(0);
+  goSpeedForward(0);
   delay(1000);
 }
 
