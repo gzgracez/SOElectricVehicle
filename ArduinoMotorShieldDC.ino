@@ -17,14 +17,11 @@ int currentSpeed = 0;
 void setup() {
   pinMode(BRAKE_A, OUTPUT);
   pinMode(DIR_A, OUTPUT);
-  
-  pinMode(BRAKE_A, OUTPUT);
-  pinMode(DIR_A, OUTPUT);
 
   Serial.begin(9600);
 
   start();
-  go(5000);
+  go(20000);
   slow();
   pause();
 }
@@ -35,9 +32,7 @@ void loop() {
 // go forward, gradually increase speed
 void start () {
   digitalWrite(BRAKE_A, LOW); // brake: LOW = disable motor brake
-  digitalWrite(DIR_A, HIGH); // direction: HIGH = forward
-  digitalWrite(BRAKE_B, LOW);
-  digitalWrite(DIR_B, HIGH);
+  digitalWrite(DIR_A, LOW); // direction: HIGH = forward
   for (int i = 0; i <= maxSpeed; i++) {
     currentSpeed = i;
     goSpeed(currentSpeed);
@@ -58,11 +53,9 @@ void slow () {
 
 void goSpeed (int moveSpeed) {
   analogWrite(PWM_A, moveSpeed);
-  analogWrite(PWM_B, moveSpeed);
 }
 
 // brake
 void pause() {
-  digitalWrite(BRAKE_A, HIGH); 
-  digitalWrite(BRAKE_B, HIGH);
+  digitalWrite(BRAKE_A, HIGH);
 }
