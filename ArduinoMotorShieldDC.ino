@@ -10,9 +10,8 @@ DIR_B   = 13,
 BRAKE_B = 8,
 SNS_B   = A1;
 
-int maxSpeed = 200;
+int maxSpeed = 255;
 int currentSpeed = 0;
-
 
 void setup() {
   pinMode(BRAKE_A, OUTPUT);
@@ -21,7 +20,7 @@ void setup() {
   Serial.begin(9600);
 
   start();
-  go(20000);
+  go(20000); // 200000 milliseconds
   slow();
   pause();
 }
